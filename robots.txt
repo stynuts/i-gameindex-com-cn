@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stynuts.github.io/i-gameindex-com-cn/sitemap.xml
