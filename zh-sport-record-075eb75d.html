@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB体育 · 简明信息卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fafafa;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #212121;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.2rem;
+        }
+
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* —— hero —— */
+        .hero {
+            padding: 2.4rem 0 1.6rem 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.015em;
+            color: #1e1e1e;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #5f5f5f;
+            font-weight: 400;
+            max-width: 36em;
+        }
+
+        /* —— 卡片网格 —— */
+        .cards-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2.4rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.03);
+            border: 1px solid #efefef;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 540;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+            color: #181818;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            color: #3a3a3a;
+            margin-bottom: 0.4rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: #444;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            letter-spacing: 0.01em;
+            margin-right: 0.4rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* —— 自然链接段落 —— */
+        .link-block {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            border: 1px solid #efefef;
+            margin: 2rem 0;
+        }
+
+        .link-block p {
+            font-size: 0.98rem;
+            color: #2e2e2e;
+        }
+
+        .link-block a {
+            color: #1360c0;
+            text-decoration: none;
+            font-weight: 480;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .link-block a:hover {
+            border-bottom-color: #1360c0;
+        }
+
+        /* —— 简约提示 / FAQ 摘要 —— */
+        .note-box {
+            background: #f6f6f6;
+            border-radius: 18px;
+            padding: 1.4rem 1.8rem;
+            margin: 2rem 0 1rem;
+            border-left: 4px solid #999;
+        }
+
+        .note-box p {
+            font-size: 0.93rem;
+            color: #333;
+        }
+
+        .note-box strong {
+            font-weight: 540;
+            color: #1f1f1f;
+        }
+
+        .faq-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 1.2rem 0 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .faq-item {
+            flex: 1 0 200px;
+            background: #ffffff;
+            padding: 0.7rem 1rem;
+            border-radius: 40px;
+            border: 1px solid #e8e8e8;
+            color: #2a2a2a;
+        }
+
+        .faq-item span:first-child {
+            font-weight: 480;
+            display: block;
+            font-size: 0.78rem;
+            color: #777;
+            margin-bottom: 0.1rem;
+        }
+
+        /* —— 脚注 —— */
+        .footer-note {
+            margin-top: 3.4rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid #e2e2e2;
+            font-size: 0.8rem;
+            color: #7a7a7a;
+            text-align: left;
+        }
+
+        /* —— 响应式 —— */
+        @media (max-width: 550px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .link-block {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .note-box {
+                padding: 1rem 1.2rem;
+            }
+
+            .faq-item {
+                flex: 1 0 100%;
+            }
+        }
+
+        /* 辅助 */
+        .mt-1 { margin-top: 0.8rem; }
+        .mb-1 { margin-bottom: 0.8rem; }
+        .subtle { color: #6f6f6f; }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 主视觉 -->
+    <div class="hero">
+        <h1>bb体育 · 信息导览</h1>
+        <p class="sub">一份面向新访客的简明指南，帮助您快速了解平台特点、适用场景与访问注意点。</p>
+    </div>
+
+    <!-- 用途卡片 + 人群卡片 融合 -->
+    <div class="cards-grid">
+
+        <div class="card">
+            <h2>📋 平台用途概览</h2>
+            <p><span class="tag">赛事数据</span><span class="tag">实时比分</span><span class="tag">赛程追踪</span></p>
+            <p>bb体育 聚合了多种体育项目的实时数据与赛事信息，覆盖足球、篮球、网球以及更多小众项目。无论是赛前分析还是赛中动态，信息更新节奏较快，适合需要快速获取比分的场景。</p>
+            <p>页面布局侧重信息展示，数据维度相对完整，用户可根据自身习惯筛选联赛或队伍。</p>
+        </div>
+
+        <div class="card">
+            <h2>🧑‍🤝‍🧑 适合哪些人</h2>
+            <p>日常关注体育赛事的爱好者、习惯在多个平台交叉核对数据的用户，以及需要快速浏览赛程与结果的轻度使用者。</p>
+            <p>如果您经常查阅国外联赛或特定杯赛，bb体育 的覆盖面能够提供一定参考价值。同时，由于信息密度较大，也适合喜欢自主判断、不依赖单一信息源的人。</p>
+        </div>
+
+        <div class="card">
+            <h2>⚙️ 场景提示</h2>
+            <p>移动端浏览时建议开启横屏模式以展示更多数据列；桌面端使用较宽显示器可获得更完整的列表视图。部分数据加载可能受网络状态影响，建议在稳定连接下使用。</p>
+            <p>另外，平台可能根据赛事进度动态调整页面内容，偶尔出现短暂数据延迟属于正常现象。</p>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 —— 嵌入句子 -->
+    <div class="link-block">
+        <p>
+            如果您想直接体验数据界面，可以前往 <a href="https://zh-sport-bb.com">bb体育</a> 查看当前赛程与实时比分。该站点无需注册即可浏览大部分公开信息，适合快速查阅。建议搭配其他信息源交叉使用，以获取更全面的赛事情报。
+        </p>
+        <p class="mt-1 subtle" style="font-size:0.9rem;">—— 以上仅为客观功能描述，不构成任何推荐或保证。</p>
+    </div>
+
+    <!-- 访问提醒 + FAQ 摘要 (卡片式) -->
+    <div class="note-box">
+        <p><strong>📌 访问提醒</strong> · 网站使用 HTTPS 传输，但请自行留意网络环境与设备安全。如遇到页面加载异常，可尝试刷新或更换时段访问。部分外部链接可能因地区网络差异而表现不同。</p>
+        <div class="faq-summary">
+            <div class="faq-item"><span>常见问题摘要</span>是否需要注册？多数页面可直接浏览，部分功能可能需登录。</div>
+            <div class="faq-item"><span>数据更新频率</span>赛事进行时通常保持秒级或分钟级刷新，具体视源数据而定。</div>
+            <div class="faq-item"><span>语言支持</span>界面以中文为主，赛事名称多保留英文缩写。</div>
+        </div>
+    </div>
+
+    <!-- 脚注 简洁 -->
+    <div class="footer-note">
+        <p>本页为独立信息卡片页，内容基于平台公开特性整理。 &nbsp;·&nbsp; 保持理性，自主判断。</p>
+    </div>
+
+</div>
+</body>
+</html>
