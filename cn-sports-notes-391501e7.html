@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bb体育 · 杂志专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f2f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #1e1f22;
+            line-height: 1.6;
+            padding: 0 16px;
+        }
+
+        .page-wrap {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 40px 0 60px;
+        }
+
+        /* hero 首页横幅 — 杂志专题式 */
+        .hero {
+            background: linear-gradient(135deg, #e9ecf0 0%, #dce0e5 100%);
+            border-radius: 28px;
+            padding: 48px 40px;
+            margin-bottom: 36px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            border: 1px solid #d3d9de;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+            top: -60px;
+            right: -40px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #121416;
+            margin-bottom: 12px;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #42474e;
+            max-width: 640px;
+            border-left: 3px solid #7f8c9e;
+            padding-left: 18px;
+            margin-top: 6px;
+        }
+
+        /* 卡片通用系统 — 浅灰背景、细边框、柔和阴影 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 28px 0 32px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 28px;
+            border: 1px solid #e2e6ea;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+            border-color: #cbd2d8;
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: #1b1e22;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2d3138;
+            margin-bottom: 14px;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eef0f2;
+            color: #3a414a;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 30px;
+            margin-right: 6px;
+            margin-bottom: 8px;
+            border: 1px solid #d2d7dd;
+            letter-spacing: 0.02em;
+        }
+
+        /* 宽卡片用于更多背景说明 */
+        .feature-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 36px 32px;
+            border: 1px solid #e2e6ea;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            margin: 24px 0;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 18px;
+            color: #1b1e22;
+        }
+
+        .feature-card .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 3rem;
+            margin-top: 16px;
+        }
+
+        .stats-item {
+            min-width: 100px;
+        }
+
+        .stats-item .num {
+            font-size: 1.5rem;
+            font-weight: 450;
+            color: #20252b;
+        }
+
+        .stats-item .label {
+            font-size: 0.8rem;
+            color: #5b6570;
+            letter-spacing: 0.02em;
+        }
+
+        /* FAQ 摘要卡片 */
+        .faq-mini {
+            background: #f8fafb;
+            border-radius: 20px;
+            padding: 28px 30px;
+            border: 1px solid #dce1e6;
+            margin: 32px 0 10px;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .faq-mini details {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e3e8ed;
+            padding-bottom: 10px;
+        }
+
+        .faq-mini details:last-child {
+            border-bottom: none;
+        }
+
+        .faq-mini summary {
+            font-weight: 450;
+            cursor: pointer;
+            color: #20252b;
+            font-size: 0.95rem;
+            padding: 4px 0;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            color: #7f8c9e;
+        }
+
+        .faq-mini p {
+            margin: 10px 0 0 12px;
+            color: #3a434d;
+            font-size: 0.9rem;
+        }
+
+        /* 页尾访问提示 */
+        .footer-access {
+            background: #f2f4f6;
+            padding: 32px 28px;
+            border-radius: 20px;
+            border: 1px solid #d3d9de;
+            margin-top: 28px;
+            text-align: center;
+            font-size: 1rem;
+            color: #1e2329;
+        }
+
+        .footer-access a {
+            color: #1f2a36;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #9ba8b4;
+            transition: border-color 0.15s;
+        }
+
+        .footer-access a:hover {
+            border-bottom-color: #1f2a36;
+        }
+
+        .inline-link {
+            color: #1f2a36;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #b0bcc6;
+            transition: border-color 0.15s;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #1f2a36;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 32px 20px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .feature-card {
+                padding: 24px 18px;
+            }
+
+            .feature-card .stats {
+                gap: 1.25rem 1.5rem;
+            }
+
+            .faq-mini {
+                padding: 20px;
+            }
+
+            .footer-access {
+                padding: 24px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero .sub {
+                font-size: 0.95rem;
+                padding-left: 14px;
+            }
+
+            .card {
+                padding: 24px 18px;
+            }
+
+            .stats-item .num {
+                font-size: 1.25rem;
+            }
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dce1e6;
+            margin: 28px 0 18px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 杂志首页横幅 -->
+    <div class="hero">
+        <h1>bb体育 · 持续在场</h1>
+        <div class="sub">专题 · 再次访问的自然节奏 &nbsp;|&nbsp; 收藏与回看，比初次印象更持久</div>
+        <div style="margin-top: 22px; font-size: 0.9rem; color: #4d555f; max-width: 660px;">
+            从浏览到习惯，从第一次点击到收藏夹里的固定位置——一个稳定的信息节点值得反复回到。
+        </div>
+    </div>
+
+    <!-- 背景说明（简洁） -->
+    <div class="feature-card">
+        <h3>关于再次访问的底层逻辑</h3>
+        <p style="max-width: 720px;">
+            在信息过载的环境中，持续关注一个体育资讯节点需要理由：数据稳定、更新节奏可预期、入口清晰。
+            <a href="https://cn-sports-bb.com" class="inline-link">bb体育</a> 在设计之初就将「回访体验」作为隐性标尺，
+            避免过度推送，但保持结构的一致性。页面层级、栏目分类以及信息密度都在为再次浏览做铺垫。
+        </p>
+        <div class="stats">
+            <div class="stats-item">
+                <div class="num">·</div>
+                <div class="label">收藏适配</div>
+            </div>
+            <div class="stats-item">
+                <div class="num">·</div>
+                <div class="label">回访路径</div>
+            </div>
+            <div class="stats-item">
+                <div class="num">·</div>
+                <div class="label">信息节奏</div>
+            </div>
+        </div>
+        <div style="margin-top: 8px; font-size: 0.85rem; color: #5b6570;">
+            持续关注意味着不需要每次重新适应界面，而是快速定位到感兴趣的区域。
+        </div>
+    </div>
+
+    <!-- 三段自然介绍（卡片网格） -->
+    <div class="card-grid">
+        <div class="card">
+            <h2>回顾与再发现</h2>
+            <p>
+                当你第二次回到同一个站点，看到的不仅是内容更新，还有界面记忆的唤醒。
+                <span style="font-weight: 450;">bb体育</span> 的首页结构趋向稳定，
+                头部导航、专题区域和最近更新模块保持相对固定的位置，减少认知负荷。
+            </p>
+            <p>
+                这种克制让再次访问更像一次轻快的翻阅，而非从零开始的摸索。
+                收藏夹里的链接如果每次打开都面目全非，回访意愿会自然衰减。
+            </p>
+            <div>
+                <span class="tag">收藏友好</span>
+                <span class="tag">结构一致</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>关注链的建立</h2>
+            <p>
+                持续关注一个体育平台往往始于某个具体需求：赛程、数据、观点或资讯密度。
+                当这些需求被稳定满足后，「再去看看」就成为一种轻量习惯。
+            </p>
+            <p>
+                通过 <a href="https://cn-sports-bb.com" class="inline-link">bb体育</a> 的栏目设置，
+                你可以将注意力集中在最常使用的板块，而不被无关信息过度干扰。
+                信息层级清晰，是长期关注的前提之一。
+            </p>
+            <div>
+                <span class="tag">信息层级</span>
+                <span class="tag">低干扰</span>
+                <span class="tag">习惯驱动</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二层介绍 / 特点+场景 混合（宽卡片形式） -->
+    <div class="feature-card" style="margin-top: 8px;">
+        <h3>场景 · 从收藏到日常访问</h3>
+        <p>
+            收藏一个链接往往发生在某个具体时刻：深夜浏览、赛事间歇、资讯阅读的某个节点。
+            但收藏的真正价值在于——下次打开时依然感到熟悉和有用。
+            <span style="font-weight: 450;">bb体育</span> 的页面节奏经过调整，
+            避免频繁的布局重构，让收藏夹里的地址始终保持可预测的视觉效果。
+        </p>
+        <p style="margin-top: 12px;">
+            与此同时，细边框与浅灰背景的延续性（包括本页所体现的视觉方向）也在降低每次访问的「重新适应成本」。
+            无论通过桌面还是移动设备再次进入，信息优先级保持一致。
+        </p>
+        <div style="margin-top: 18px;">
+            <span class="tag">视觉延续</span>
+            <span class="tag">跨设备</span>
+            <span class="tag">低学习成本</span>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要（再次访问相关） -->
+    <div class="faq-mini">
+        <h3>FAQ · 关于持续关注的几个常见问题</h3>
+        <details>
+            <summary>为什么要强调「再次访问」的设计？</summary>
+            <p>一次访问只是开始。当用户愿意再次输入地址或从收藏夹中点开，意味着信息供给与使用习惯之间建立了初步匹配。持续的微调比一次性的惊艳更能支撑长期使用。</p>
+        </details>
+        <details>
+            <summary>信息密度高是否会增加回访负担？</summary>
+            <p>密度与清晰度需要平衡。高密度但结构松散会增加认知负担；而如果信息分区明确、标题层级清楚，即使内容较多，回访者也能快速定位。bb体育 倾向于后者。</p>
+        </details>
+        <details>
+            <summary>收藏后页面变化太大怎么办？</summary>
+            <p>重大改版通常会提前预告。日常迭代以微调为主，保持核心导航和内容骨架的稳定是基本原则。如果你发现某次访问布局变化明显，通常是因为增加了可选功能模块。</p>
+        </details>
+    </div>
+
+    <!-- 页尾访问提示 （杂志页尾风格） -->
+    <div class="footer-access">
+        <div style="margin-bottom: 6px; font-weight: 450; letter-spacing: 0.02em;">杂志专题 · 持续关注</div>
+        <div style="margin-bottom: 12px;">
+            收藏夹里的稳定坐标 &nbsp;—&nbsp; <a href="https://cn-sports-bb.com">bb体育</a>
+        </div>
+        <div style="font-size: 0.85rem; color: #4f5761; border-top: 1px solid #d8dee3; padding-top: 16px; margin-top: 6px; max-width: 500px; margin-left: auto; margin-right: auto;">
+            再次打开时，界面还是熟悉的节奏。这不是巧合，是设计选择。
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
